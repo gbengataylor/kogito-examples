@@ -1,0 +1,142 @@
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_624C54D0-E03B-4A94-A7A0-6A7735DF800A" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_2CF3B65B-D58C-4708-AC4A-C86196006601" name="airmiles" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_624C54D0-E03B-4A94-A7A0-6A7735DF800A">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_4B56F485-F1F8-47DC-99B9-0F9EA8CE0997" name="Status" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_3E58C650-62DA-4B98-BE09-E5691F0B4169">
+      <dmn:text>"NONE", "GOLD"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_ABF99C62-0A1D-49CB-83F8-1787A5CA975B" name="Status">
+    <dmn:extensionElements/>
+    <dmn:variable id="_A7663035-6A25-462B-90BA-5D0B2BC3B7A6" name="Status" typeRef="Status"/>
+  </dmn:inputData>
+  <dmn:inputData id="_AF1FE3EE-52B7-4DA2-AE50-686A6618FF34" name="Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_344E93E0-009D-4C6E-9BAA-0ACF0FC60A3B" name="Price" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:decision id="_2A6BEF0A-7986-4342-AEA5-3A3E71571928" name="Airmiles">
+    <dmn:extensionElements/>
+    <dmn:variable id="_F366BD5D-F152-4509-901C-A0217728D8C4" name="Airmiles" typeRef="number"/>
+    <dmn:informationRequirement id="_BABFE02B-2A51-472B-A1E2-4C6D6A8C8A0A">
+      <dmn:requiredInput href="#_ABF99C62-0A1D-49CB-83F8-1787A5CA975B"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_50E7899C-37DF-4884-A216-F3E666FF69B7">
+      <dmn:requiredInput href="#_AF1FE3EE-52B7-4DA2-AE50-686A6618FF34"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_C025DB7B-A26B-4476-804F-1B331AC84A98" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_AD582FE3-E807-4934-998F-45C1725E68AE">
+        <dmn:inputExpression id="_EFEDC9D0-1816-45BB-88F7-FB92333B82AF" typeRef="number">
+          <dmn:text>Price</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_D6DAE981-EA35-4D96-924F-0B2CA2F99274">
+        <dmn:inputExpression id="_30F6C568-3825-44C9-8852-029A306DFDF0" typeRef="string">
+          <dmn:text>Status</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_7D225F95-8CBD-484B-87EF-F838E9DE9DAB"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_3853D1B6-F529-4562-9E9D-74DEE55517DB">
+        <dmn:inputEntry id="_76630BF9-6A0E-471D-9D2E-00C171FA9609">
+          <dmn:text>&lt; 1000</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_C3B06211-3EF0-483F-B2D7-2FD0129A10DD">
+          <dmn:text>"NONE"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_F7FD0A9F-3F4D-463C-9AE4-C17226CEF24D">
+          <dmn:text>Price</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_65F0286A-AC5E-4365-BB17-EE69CC500EF8">
+        <dmn:inputEntry id="_077D9434-415A-4835-AA55-842917C4A404">
+          <dmn:text>&lt; 1000</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_15DFE805-BDA3-419A-97EE-771CABF3A887">
+          <dmn:text>"GOLD"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_0FAE24B2-DF31-432C-8A04-550A87BC28BB">
+          <dmn:text>Price * 1.2</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_DFA559DE-0D44-422C-9111-2F10464CF691">
+        <dmn:inputEntry id="_A98BA574-A939-438F-A90F-106F34020411">
+          <dmn:text>&gt;= 1000</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_44369E01-1F98-46C9-B59D-E2CDDDCAC2A1">
+          <dmn:text>"GOLD"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_F1B4CBB8-39C7-4DD8-88AD-000D4E27520E">
+          <dmn:text>Price * 1.5</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_E97D364B-B87F-4679-AC2B-E1FF588774CC" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_C025DB7B-A26B-4476-804F-1B331AC84A98">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_ABF99C62-0A1D-49CB-83F8-1787A5CA975B" dmnElementRef="_ABF99C62-0A1D-49CB-83F8-1787A5CA975B" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="252" y="189" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_AF1FE3EE-52B7-4DA2-AE50-686A6618FF34" dmnElementRef="_AF1FE3EE-52B7-4DA2-AE50-686A6618FF34" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="440" y="189" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-2-_ABF99C62-0A1D-49CB-83F8-1787A5CA975B" dmnElementRef="_ABF99C62-0A1D-49CB-83F8-1787A5CA975B" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="831" y="327" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_2A6BEF0A-7986-4342-AEA5-3A3E71571928" dmnElementRef="_2A6BEF0A-7986-4342-AEA5-3A3E71571928" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="335" y="67" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_BABFE02B-2A51-472B-A1E2-4C6D6A8C8A0A-AUTO-TARGET" dmnElementRef="_BABFE02B-2A51-472B-A1E2-4C6D6A8C8A0A">
+        <di:waypoint x="302" y="214"/>
+        <di:waypoint x="385" y="117"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_50E7899C-37DF-4884-A216-F3E666FF69B7-AUTO-TARGET" dmnElementRef="_50E7899C-37DF-4884-A216-F3E666FF69B7">
+        <di:waypoint x="490" y="214"/>
+        <di:waypoint x="385" y="117"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

@@ -1,0 +1,38 @@
+package org.acme;
+//Unit definition
+unit PersonUnit;
+  
+import org.acme.domain.Person;
+
+rule "Is Adult"
+when
+//Person OOPath
+   //$p: /persons[age >= 18];
+  // use adultAge in PErsonUnit
+  $p: /persons[age >= adultAge];
+then
+//Set adult
+  $p.setAdult(true);
+end
+
+rule "Is Not Adult"
+when
+//Person OOPath
+  $p: /persons[age < adultAge];
+then
+//Set adult
+  $p.setAdult(false);
+end
+
+/*rule "Evaluate Adult"
+// syntax error
+when  
+   $p: /persons != null;
+then
+ $p.setAdult( $p.getAge() >= 18)
+end*/
+
+query "adult"
+//Adult query
+  $p: /persons;
+end
