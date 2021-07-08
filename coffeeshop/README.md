@@ -14,6 +14,22 @@ mvn io.quarkus:quarkus-maven-plugin:1.11.7.Final:create \
 
 created using https://github.com/KIE-Learning/kogito-enablement/blob/master/modules/05_Kogito_Service_Orchestration/05_1_Kogito_Service_Orchestration.adoc
 
+you will need to run the following if using the Quarkus Rest Client
+
+```shell script
+ $ git clone https://github.com/DuncanDoyle/coffeeservice-quarkus.git
+ 
+ $ cd coffeeservice-quarkus
+ 
+ $  mvn clean package
+ 
+ $  java -jar target/coffeeservice-quarkus-1.0-SNAPSHOT-runner.jar
+ 
+ #to test
+ $ curl -X GET "http://localhost:8090/coffee" -H "accept: application/json" -d "{}"
+```
+ 
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
