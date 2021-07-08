@@ -17,16 +17,16 @@ created using https://github.com/KIE-Learning/kogito-enablement/blob/master/modu
 you will need to run the following if using the Quarkus Rest Client
 
 ```shell script
- $ git clone https://github.com/DuncanDoyle/coffeeservice-quarkus.git
+ git clone https://github.com/DuncanDoyle/coffeeservice-quarkus.git
  
- $ cd coffeeservice-quarkus
+ cd coffeeservice-quarkus
  
- $  mvn clean package
+  mvn clean package
  
- $  java -jar target/coffeeservice-quarkus-1.0-SNAPSHOT-runner.jar
+  java -jar target/coffeeservice-quarkus-1.0-SNAPSHOT-runner.jar
  
  #to test
- $ curl -X GET "http://localhost:8090/coffee" -H "accept: application/json" -d "{}"
+  curl -X GET "http://localhost:8090/coffee" -H "accept: application/json" -d "{}"
 ```
  
 
